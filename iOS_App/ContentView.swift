@@ -37,6 +37,27 @@ struct listView: View {
     
     var body: some View {
         VStack {
+            
+            List {
+                Text("wash the car")
+                Text("go from home")
+                Text("pick your order")
+            }
+        }
+    }
+}
+
+enum fileTransferError: Error {
+    case fileNotFound
+    case connectionFailed
+}
+
+
+
+struct listView: View {
+    
+    var body: some View {
+        VStack {
             Text("hello")
         }
     }
