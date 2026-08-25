@@ -1,61 +1,43 @@
-//
-//  ContentView.swift
-//  iOS_App
-//
-//  Created by Ansari Amir Alam Nisar Ahmad on 19/04/26.
-//
-
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @State var goNext: Bool = false
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        
+        NavigationStack {
+            VStack {
+                Text("Hellow, Wellcome to SwiftUI")
+                    .font(.largeTitle)
+                Button("Go Next") {
+                    goNext = true
+                }   
+                .padding()
+                .foregroundStyle(Color.white)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.blue)
+                )
+                .navigationDestination(isPresented: $goNext){
+                    listView()
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
             }
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+enum fileTransferError: Error {
+    case fileNotFound
+    case connectionFailed
+}
+
+
+
+struct listView: View {
+    
+    var body: some View {
+        VStack {
+            Text("hello")
+        }
+    }
 }
