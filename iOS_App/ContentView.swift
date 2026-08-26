@@ -26,13 +26,6 @@ struct ContentView: View {
     }
 }
 
-enum fileTransferError: Error {
-    case fileNotFound
-    case connectionFailed
-}
-
-
-
 struct listView: View {
     
     var body: some View {
@@ -47,18 +40,3 @@ struct listView: View {
     }
 }
 
-enum fileTransferError: Error {
-    case fileNotFound
-    case connectionFailed
-}
-
-
-
-struct listView: View {
-    
-    var body: some View {
-        VStack {
-            Text("hello")
-        }
-    }
-}
