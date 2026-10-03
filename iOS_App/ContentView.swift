@@ -41,6 +41,7 @@ struct listView: View {
         VStack {
             
             List {
+                Text("hello")
                 Text("wash the car")
                 Text("go from home")
                 Text("pick your order")
